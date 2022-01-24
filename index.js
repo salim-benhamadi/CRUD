@@ -13,6 +13,7 @@ var mysqlConnection = mysql.createConnection({
   password: "12345678",
   database: "employeeDB",
   port: "3306",
+  multipleStatements: true,
 });
 
 mysqlConnection.connect((err) => {
@@ -34,6 +35,7 @@ app.post("/", (req, res, next) => {
       { username: username },
 
       "secretkey",
+      { expiresIn: "15m" },
       (err, token) => {
         res.send({
           ok: true,
